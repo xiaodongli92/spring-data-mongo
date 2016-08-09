@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="5 seconds">
+    <timestamp key="byDay" datePattern="yyyy-MM-dd"/>
+    <timestamp key="byHour" datePattern="yyyy-MM-dd-HH"/>
+    <property name="log.dir" value="/opt/resin_log/mongo.spring.log" />
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>${log.dir}</file>
+        <append>true</append>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss}, %p, %m%n</pattern>
+        </layout>
+    </appender>
+    <logger name="com.xiaodong" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <root>
+        <level value="ERROR"/>
+        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
